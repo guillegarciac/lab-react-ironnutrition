@@ -3,6 +3,7 @@ import { Card, Col, Button } from 'antd';
 
 export default function FoodBox({food, handleDelete}) {
   const {name, calories, image, servings} = food;
+  
   const totalCalories = calories * servings;
   
   const handleFoodDelete = () => {
@@ -11,10 +12,7 @@ export default function FoodBox({food, handleDelete}) {
 
   return (
     <Col>
-      <Card
-        title={name}
-        style={{ width: 230, height: 300, margin: 10 }}
-      >
+      <Card title={name} style={{ width: 230, height: 300, margin: 10 }}>
         <img src={image} height={60} alt={name} />
         <p>Calories: {calories}</p>
         <p>Servings: {servings}</p>

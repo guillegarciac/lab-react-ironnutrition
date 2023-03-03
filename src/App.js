@@ -47,6 +47,11 @@ function App() {
         .map(food => {
         return <FoodBox food={food} key={food.name} handleDelete={handleDelete} />
       })}
+      {foods.length === 0 && 
+        <div>
+          <p>Oops, no more foods...</p>
+          <img width="350px" src="https://media.npr.org/assets/img/2016/07/21/emptyplate3_sq-e28860c5cd33831be0ae73b3508394d777c1bd8a.jpg" alt="food is over"/>
+        </div>}
     </Row>
     </div>
   );

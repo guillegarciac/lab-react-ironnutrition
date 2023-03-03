@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
-import { Divider, Input, Button } from 'antd';
+import { Input, Button } from 'antd';
 
-// Iteration 4
 export default function AddFoodForm({handleNewFood}) {
   const initialState = {
     name: "",
@@ -9,6 +8,7 @@ export default function AddFoodForm({handleNewFood}) {
     calories: 0,
     servings: 1,
   }
+  
   const [newFood, setNewFood] = useState(initialState);
 
   const handleChange = (e) => {
