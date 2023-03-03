@@ -28,6 +28,16 @@ function App() {
   const handleShowForm = () => {
     setShowForm(prev => !prev)
   }
+
+  const handleNameSort =() => {
+    const sortByName = [...foods].sort((a,b) => a.name.localeCompare(b.name))
+    setFoods(sortByName)
+  }
+
+  const handleCaloriesSort = () => {
+    const sortByCalories = [...foods].sort((a,b) => b.calories - a.calories);
+    setFoods(sortByCalories)
+  }
   
   return (
     <div className="App">
@@ -37,6 +47,8 @@ function App() {
     </Row>
     <Divider>Actions</Divider>
     <Button className="btn" onClick={handleShowForm}>{showForm ? 'Hide' : 'Add Food'}</Button>
+    <Button className="btn" onClick={handleNameSort}>Sort by Name</Button>
+    <Button className="btn" onClick={handleCaloriesSort}>Sort by Calories</Button>
     <Row style={{ width: '100%', justifyContent: 'center' }}>
       {showForm && <AddFoodForm handleNewFood={handleNewFood}/>}
     </Row>
