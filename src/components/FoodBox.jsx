@@ -1,10 +1,14 @@
 import React from 'react';
 import { Card, Col, Button } from 'antd';
 
-export default function FoodBox({food}) {
+export default function FoodBox({food, handleDelete}) {
   const {name, calories, image, servings} = food;
   const totalCalories = calories * servings;
   
+  const handleFoodDelete = () => {
+    handleDelete(name)
+  }
+
   return (
     <Col>
       <Card
@@ -17,7 +21,7 @@ export default function FoodBox({food}) {
         <p>
           <b>Total Calories: {totalCalories} </b> kcal
         </p>
-        <Button type="primary"> Delete </Button>
+        <Button type="primary" onClick={handleFoodDelete} > Delete </Button>
       </Card>
     </Col>
   )

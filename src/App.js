@@ -1,6 +1,6 @@
 import './App.css';
 import React, { useState } from 'react';
-import { Row, Divider, Button } from 'antd';
+import { Row, Divider } from 'antd';
 import foodsData from "./foods.json";
 import FoodBox from './components/FoodBox';
 import AddFoodForm from './components/AddFoodForm';
@@ -18,6 +18,11 @@ function App() {
   const handleSearch = (str) => {
     setValue(str)
   }
+
+  const handleDelete = (foodName) => {
+    const foodToDelete = [...foods].filter(food => food.name !== foodName)
+    setFoods(foodToDelete)
+  }
   
   return (
     <div className="App">
@@ -34,7 +39,7 @@ function App() {
       {foods
         .filter(food => food.name.toLowerCase().includes(searchValue.toLocaleLowerCase()))
         .map(food => {
-        return <FoodBox food={food} key={food.name} />
+        return <FoodBox food={food} key={food.name} handleDelete={handleDelete} />
       })}
     </Row>
     </div>
