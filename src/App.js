@@ -1,6 +1,6 @@
 import './App.css';
 import React, { useState } from 'react';
-import { Row, Divider } from 'antd';
+import { Row, Divider, Button } from 'antd';
 import foodsData from "./foods.json";
 import FoodBox from './components/FoodBox';
 import AddFoodForm from './components/AddFoodForm';
@@ -9,6 +9,7 @@ import Search from './components/Search';
 function App() {
   const [foods, setFoods] = useState(foodsData); 
   const [searchValue, setValue] = useState("");
+  const [showForm, setShowForm] = useState(false);
   
   const handleNewFood = (food) => {
     const newFood = {...food, _id: foods.length + 1}
@@ -23,6 +24,10 @@ function App() {
     const foodToDelete = [...foods].filter(food => food.name !== foodName)
     setFoods(foodToDelete)
   }
+
+  const handleShowForm = () => {
+    setShowForm(prev => !prev)
+  }
   
   return (
     <div className="App">
@@ -30,9 +35,10 @@ function App() {
     <Row style={{ width: '100%', justifyContent: 'center' }}>
       <Search handleSearch={handleSearch}/>
     </Row>
-    <Divider>Add Food Entry</Divider>
+    <Divider>Actions</Divider>
+    <Button className="btn" onClick={handleShowForm}>{showForm ? 'Hide' : 'Add Food'}</Button>
     <Row style={{ width: '100%', justifyContent: 'center' }}>
-      <AddFoodForm handleNewFood={handleNewFood}/>
+      {showForm && <AddFoodForm handleNewFood={handleNewFood}/>}
     </Row>
     <Divider>Food List</Divider>
     <Row style={{ width: '100%', justifyContent: 'center' }}>

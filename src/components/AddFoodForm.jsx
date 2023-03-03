@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Divider, Input } from 'antd';
+import { Divider, Input, Button } from 'antd';
 
 // Iteration 4
 export default function AddFoodForm({handleNewFood}) {
@@ -28,7 +28,6 @@ export default function AddFoodForm({handleNewFood}) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <Divider>Add Food Entry</Divider>
       <label>Name</label>
       <Input name="name" value={newFood.name} type="text" onChange={handleChange} />
       <label>Image</label>
@@ -37,7 +36,9 @@ export default function AddFoodForm({handleNewFood}) {
       <Input name="calories" value={newFood.calories} type="number" onChange={handleChange} />
       <label>Servings</label>
       <Input name="servings" value={newFood.servings} type="number" onChange={handleChange} />
-      <button type="submit">Create</button>
+      {/* for some reason Button from antd inisde the form doesn't submit */}
+      <Button className="btn" type="submit">Add to List</Button>
+      <button type="submit">Add to List</button>
     </form>
   );
 }
